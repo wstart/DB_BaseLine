@@ -1,11 +1,11 @@
 # DB_BASELINE 使用说明和检测脚本编写规范
+![](https://github.com/wstart/DB_BaseLine/blob/master/image/1524419076653.jpg?raw=true)
 ## 概述
 本文档为DB_BASELINE的使用说明和检测脚本编写规范，
 DB_BASELINE主要用于数据库的配置项的基线检查。
 该文档主要描述了DB_BASELINE的使用方法以及检测脚本的编写规范，
 编写规范检测脚本适用于后期导入SYSLOG，SOC等
 ## DB_BASE 使用说明
-
 - 帮助信息 python db_baseline.py -h
 
 ## DB_BASELINE 检查规范
