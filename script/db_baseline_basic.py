@@ -110,6 +110,17 @@ class db_baseline_basic(object):
         md5_C = hashlib.md5()
         md5_C.update(str(time.time()))
 
+        print '''DB_Baseline check result :
+---'''
+        print 'Score:'+str(self.result['Score'])
+        print 'Desc:'+str(self.result['Desc'])
+        print 'Defect :'
+        for r_item in self.result['Defect']:
+            print  '    Defect:'+r_item['Desc']
+            print  '    Level:'+r_item['Level']
+            print  '    Suggest:'+r_item['Suggest']
+
+        print '''---'''
         print '''
 [*] test result save -> ./log/'''+ str(md5_C.hexdigest() ) +'''.log'''
         with open("./log/"+ str(md5_C.hexdigest() ) +".log","w") as f:
