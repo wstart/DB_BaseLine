@@ -53,7 +53,6 @@ class db_baseline_basic(object):
 
     def getFilepower(self,path):
         try:
-
             pathdir =  os.path.dirname(os.path.abspath(path))
             basename = os.path.basename(os.path.abspath(path))
             command = 'ls -al ' + pathdir+"/   2>/dev/null | egrep '.*? "+basename+"$'  2>/dev/null | awk '{print $1}'"
@@ -84,9 +83,10 @@ class db_baseline_basic(object):
             else:
                 self.plog.output("testing power baseline")
                 self.run_power_test()
-                self.run_netword_test()
-                self.run_config_test()
-            self.run_exec_test()
+                self.run_network_test()
+                self.run_file_test()
+            self.run_config_test()
+
 
         self.close()
         self.result["endVerifyTime"] = datetime.datetime.now().strftime('%H:%M:%S')
@@ -145,15 +145,15 @@ class db_baseline_basic(object):
 
     # 网络连接基线检查
     @abstractmethod
-    def run_netword_test(self):
+    def run_network_test(self):
         pass
 
-    # 危险语句基线检查
+    # 文件安全基线检查
     @abstractmethod
-    def run_exec_test(self):
+    def run_file_test(self):
         pass
 
-    # 配置文件基线检查
+    # 数据库配置基线检查
     @abstractmethod
     def run_config_test(self):
         pass

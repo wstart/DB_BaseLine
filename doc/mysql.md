@@ -1,0 +1,43 @@
+# Mysql 基线检查项
+
+- 账号权限基线检查 run_power_test 
+    - 启动 mysql 的系统账号 是否单独创建 且 不允许登陆
+    - 默认管理员账号是否存在
+    - 高级权限账号 是否是必须
+    - 系统数据库MYSQL的高级权限账号 是否必须
+    - 具有特定的高级权限账号是否必须
+        - File_priv  文件权限
+        - Process_priv 进程权限
+        - Super_priv 委托权限
+        - Shutdown_priv 关闭权限
+        - Create_user_priv 创建用户权限
+        - Grant_priv 赋权权限
+        - reload_priv 重载权限
+        - repl_slave_priv 主从数据库权限
+    -  密码为空的账号是否存在
+    -  不受IP限制的账号可登录
+    -  空用户的账号
+- 网络连接基线检查 run_network_test 
+    - 默认端口  是否修改
+    - 网络连接方式  是否为 SSL  
+- 文件安全基线检查 run_file_test    
+    - 数据库文件路径 show variables where variable_name = 'datadir'  
+    - 检查MYSQL命令执行历史记录  ~/.mysql_history 
+    - 敏感的日志，查询，错误，审计文件
+        - log_bin_basename
+        - log_error
+        - slow_query_log_file
+        - general_log_file
+        - audit_log_file
+        - relay_log_basename
+- 数据库配置基线检查 run_config_test 
+    - 错误日志是否开启 SHOW variables LIKE 'log_error';
+    - 错误日志等级设置 SHOW GLOBAL VARIABLES LIKE 'log_warnings';
+    - 测试数据库是否存在 SHOW DATABASES LIKE 'test';
+    - 是否可以读取本地文件 SHOW VARIABLES WHERE Variable_name = 'local_infile';
+    - 是否可以访问数据库目录以外的文件 have_symlink
+    - 是否存在 daemon_memcached 插件
+    - 数据库模式 sql_mode 是否包含 STRICT_TRANS_TABLES
+    - 过期账号是否可以登录 disconnect_on_expired_password
+
+
